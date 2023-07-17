@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
+import { ViewportScroller } from "@angular/common";
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent {
   public totalItem:number = 0;
   public searchTerm : string = '';
 
-  constructor(private cartService:CartService){
+  constructor(private cartService:CartService,private scroller: ViewportScroller){
 
   }
 
@@ -27,6 +28,9 @@ export class HeaderComponent {
     console.log(this.searchTerm);
     this.cartService.search.next(this.searchTerm);
 
+  }
+  goDown() {
+    this.scroller.scrollToAnchor("items");
   }
 
 }
